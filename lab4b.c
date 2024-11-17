@@ -37,6 +37,7 @@ char* process(char* input){
     int n = 0;
     while (word != NULL){
         int wlen = mystrlen(word);
+        printf("%s = %d\n", word, wlen); 
         if (wlen > 0){
             mystrncpy(modified + n, word, wlen * sizeof(char));
             n += wlen;
