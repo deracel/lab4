@@ -31,15 +31,35 @@ int main(void){
 char* process(char* input){
     char* input_copy = strdup(input);
     int l = strlen(input);
-    char* modified = calloc((l + 1), sizeof(char));
+    char* modified;
+    if(l <= 9){
+       modified = calloc((l + 4), sizeof(char)); 
+    }
+    if(l >= 10){
+       modified = calloc((l + 5), sizeof(char)); 
+    }
+    
     char* word = strtok(input_copy, DELIM);
     int n = 0;
     while (word != NULL){
         int wlen = strlen(word);
-        printf("%s = %d\n", word, wlen); 
         if (wlen > 0){
             strncpy(modified + n, word, wlen * sizeof(char));
             n += wlen;
+            modified[n] = ' ';
+            n++;
+            if (wlen <= 9){
+                modified[n] = (char)(wlen + 48);
+                n++;
+            }
+            if (wlen >= 10){
+                int dec = wlen / 10;
+                modified[n] = (char)(dec + 48);
+                n++;
+                int ed = wlen % 10;
+                modified[n] = (char)(ed + 48);
+                n++;
+            }
             modified[n] = ' ';
             n++;
         }
