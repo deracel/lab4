@@ -4,3 +4,4 @@ char* mystrdup(char*);
 char* mystrtok(char*, const char* );
 int mystrlen(char*);
 char* mystrchr(const char * s, const char c);
+char* myreadline();

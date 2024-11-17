@@ -9,7 +9,8 @@ strsmpy--
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
+#define PROMPT "> "
 
 char* mystrncpy(char* s, char* c, int n){
     int i = 0;
@@ -59,24 +60,54 @@ char* mystrchr(const char * s, const char c) {
 
 }
  
-char* mystrtok(char * str, const char * delim) {
-    static char * next;
+char* mystrtok(char* str, const char* delim) {
+    static char* next;
     
-    if ( str ) {
+    if (str) {
         next = str;
-        while ( *next && mystrchr(delim, *next) )
+        while (*next && mystrchr(delim, *next))
             *next++ = '\0';
     }
-    
-    if ( ! *next )
+    if (!*next)
         return NULL;
     
     str = next;
     
-    while ( *next && ! mystrchr(delim, *next) )
+    while (*next && !mystrchr(delim, *next) )
         ++next;
-    while ( *next && mystrchr(delim, *next) )
+    while (*next && mystrchr(delim, *next))
         *next++ = '\0';
     
     return str;
+}
+
+char* myreadline(){
+    char buf[81] = {0};
+    char* res = NULL;
+    int len = 0;
+    int n = 0;
+    printf(PROMPT);
+    do{
+        n = scanf("%80[^\n]", buf);
+        if (n < 0) {
+            if (!res) {
+                return NULL;
+            }
+        }
+        else if (n > 0) {
+            int chunk_len = mystrlen(buf);
+            int str_len = len + chunk_len;
+            res = realloc(res, str_len + 1);
+            mystrncpy(res + len, buf, chunk_len);
+            len = str_len;
+        }
+    }while (n > 0);
+
+    if (len > 0) {
+        res[len] = '\0';
+    }
+    else {
+        res = calloc(1, sizeof(char));
+    }
+    return res;
 }

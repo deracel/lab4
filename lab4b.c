@@ -11,7 +11,7 @@
 char* process(char*);
 
 int main(void){
-    char* input = readline(PROMPT);
+    char* input = myreadline(PROMPT);
     while(input != NULL){
         printf("input  - \"%s\"\n", input);
         clock_t start = clock();
@@ -45,14 +45,6 @@ char* process(char* input){
         }
         word = mystrtok(NULL, DELIM);
     }
-    int i = 0;
-    while (input_copy[i] != '\0'){
-        printf("\"%c\"", input_copy[i]);
-        i++;
-    }
-    printf("\n");
-    printf("%d\n", i);
-    printf("\n");
     free(input_copy);
     if (n > 0)
         n--;
