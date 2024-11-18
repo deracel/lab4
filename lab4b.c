@@ -33,16 +33,7 @@ char* process(char* input){
     char* input_copy = mystrdup(input);
     int l = mystrlen(input);
     char* modified;
-    if(l <= 9){
-       modified = calloc((l + 4), sizeof(char)); 
-    }
-    if(l >= 10 && l <= 99){
-       modified = calloc((l + 5), sizeof(char)); 
-    }
-    if(l >= 100){
-       modified = calloc((l + 6), sizeof(char)); 
-    }
-    
+    modified = calloc((10 * l), sizeof(char));     
     char* word = mystrtok(input_copy, DELIM);
     int n = 0;
     while (word != NULL){

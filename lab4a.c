@@ -31,17 +31,9 @@ int main(void){
 char* process(char* input){
     char* input_copy = strdup(input);
     int l = strlen(input);
+    printf("%d------------\n",l);
     char* modified;
-    if(l <= 9){
-       modified = calloc((l + 4), sizeof(char)); 
-    }
-    if(l >= 10 && l <= 99){
-       modified = calloc((l + 5), sizeof(char)); 
-    }
-    if(l >= 100){
-       modified = calloc((l + 6), sizeof(char)); 
-    }
-    
+    modified = calloc((10 * l), sizeof(char)); 
     char* word = strtok(input_copy, DELIM);
     int n = 0;
     while (word != NULL){
