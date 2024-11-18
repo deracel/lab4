@@ -35,8 +35,11 @@ char* process(char* input){
     if(l <= 9){
        modified = calloc((l + 4), sizeof(char)); 
     }
-    if(l >= 10){
+    if(l >= 10 && l <= 99){
        modified = calloc((l + 5), sizeof(char)); 
+    }
+    if(l >= 100){
+       modified = calloc((l + 6), sizeof(char)); 
     }
     
     char* word = strtok(input_copy, DELIM);
@@ -52,11 +55,22 @@ char* process(char* input){
                 modified[n] = (char)(wlen + 48);
                 n++;
             }
-            if (wlen >= 10){
+            if (wlen >= 10 && wlen <= 99){
                 int dec = wlen / 10;
                 modified[n] = (char)(dec + 48);
                 n++;
                 int ed = wlen % 10;
+                modified[n] = (char)(ed + 48);
+                n++;
+            }
+            if (wlen >= 100){
+                int sot = wlen / 100;
+                modified[n] = (char)(sot + 48); 
+                n++;
+                int dec = (wlen / 10) % 10;
+                modified[n] = (char)(dec + 48);
+                n++;
+                int ed = wlen  % 10;
                 modified[n] = (char)(ed + 48);
                 n++;
             }
