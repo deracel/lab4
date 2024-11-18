@@ -101,6 +101,9 @@ char* myreadline(){
             mystrncpy(res + len, buf, chunk_len);
             len = str_len;
         }
+        else {
+            scanf("%*c");
+        }
     }while (n > 0);
 
     if (len > 0) {
