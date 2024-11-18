@@ -31,7 +31,6 @@ int main(void){
 char* process(char* input){
     char* input_copy = strdup(input);
     int l = strlen(input);
-    printf("%d------------\n",l);
     char* modified;
     modified = calloc((10 * l), sizeof(char)); 
     char* word = strtok(input_copy, DELIM);
