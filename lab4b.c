@@ -17,9 +17,9 @@ int main(void){
         clock_t start = clock();
         char* output = process(input);
         clock_t end = clock();
-        long double time = (long double)(end - start) / CLOCKS_PER_SEC;
+        float time = (float)(end - start) / CLOCKS_PER_SEC;
         printf("output - \"%s\"\n", output);
-        printf("time   - %.6Lf\n", time);
+        printf("time   - %6.f μs\n", time * 1000000);
         free(input);
         free(output);
         input = readline(PROMPT);
